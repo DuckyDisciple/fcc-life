@@ -46,6 +46,7 @@ var Controls = React.createClass({
         <button className="play" onClick={this.play}>{this.props.playBtnText}</button>
         <button className="reset" onClick={this.reset}>Reset</button>
         <button className="clear" onClick={this.clear}>Clear</button>
+        <p className="gen-count">Generations: {this.props.genNum}</p>
       </div>
     );
   }
@@ -53,7 +54,7 @@ var Controls = React.createClass({
 
 var Container = React.createClass({
   getInitialState: function(){
-    return {mounted: false, playing: false, playText: "Play", board: this.getEmptyBoard()};
+    return {mounted: false, playing: false, playText: "Play", board: this.getEmptyBoard(), generations: 0};
   },
   componentDidMount: function(){
     this.setState({mounted: true});
@@ -80,7 +81,8 @@ var Container = React.createClass({
       }
       nextBoard.push(col);
     }
-    this.setState({board: nextBoard});
+    var gen = this.state.generations + 1;
+    this.setState({board: nextBoard, generations: gen});
   },
   checkSquare: function(col, row){
     var grid = this.state.board;
@@ -128,7 +130,7 @@ var Container = React.createClass({
     return (
       <div className="conatiner">
         <Gameboard board={this.state.board} />
-        <Controls playClicked={this.playClick} resetClicked={this.resetClick} clearClicked={this.clearClick} playBtnText={this.state.playText} />
+        <Controls playClicked={this.playClick} resetClicked={this.resetClick} clearClicked={this.clearClick} playBtnText={this.state.playText} genNum={this.state.generations} />
       </div>
     );
   }

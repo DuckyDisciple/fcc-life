@@ -37,12 +37,15 @@ var Controls = React.createClass({
   reset: function(){
     this.props.resetClicked();
   },
+  clear: function(){
+    this.props.clearClicked();
+  },
   render: function(){
     return (
       <div className="controls">
-        <button className="play" onClick={this.play}>Play</button>
+        <button className="play" onClick={this.play}>{this.props.playBtnText}</button>
         <button className="reset" onClick={this.reset}>Reset</button>
-        <button className="clear">Clear</button>
+        <button className="clear" onClick={this.clear}>Clear</button>
       </div>
     );
   }
@@ -50,10 +53,23 @@ var Controls = React.createClass({
 
 var Container = React.createClass({
   getInitialState: function(){
-    return {mounted: false, board:[[0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]};
+    return {mounted: false, playing: false, playText: "Play", board: this.getEmptyBoard()};
   },
   componentDidMount: function(){
     this.setState({mounted: true});
+    this.resetClick();
+    this.playClick();
+  },
+  getEmptyBoard: function(){
+    var board = [];
+    for(var i=0; i<30; i++){
+      var col = [];
+      for(var j=0; j<30; j++){
+        col.push(0);
+      }
+      board.push(col);
+    }
+    return board;
   },
   nextStep: function(){
     var nextBoard = [];
@@ -86,7 +102,13 @@ var Container = React.createClass({
     }
   },
   playClick: function(){
-    this.nextStep();
+    if(this.state.playing){
+      clearInterval(this.timer);
+      this.setState({playText: "Play", playing: false});
+    }else{
+      this.timer = setInterval(this.nextStep, 500);
+      this.setState({playText: "Pause", playing: true});
+    }
   },
   resetClick: function(){
     var newBoard = [];
@@ -99,11 +121,14 @@ var Container = React.createClass({
     }
     this.setState({board: newBoard});
   },
+  clearClick: function(){
+    this.setState({board: this.getEmptyBoard()});
+  },
   render: function(){
     return (
       <div className="conatiner">
         <Gameboard board={this.state.board} />
-        <Controls playClicked={this.playClick} resetClicked={this.resetClick} />
+        <Controls playClicked={this.playClick} resetClicked={this.resetClick} clearClicked={this.clearClick} playBtnText={this.state.playText} />
       </div>
     );
   }

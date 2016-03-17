@@ -1,11 +1,39 @@
 *
   border-size: box-border
+body
+  text-align: center
+.container
+  background: lighten(blue, 45%)
+  padding: 20px
+  padding-bottom: 5px
+  border-radius: 10px
+  width: 650px
+  margin: 0 auto
 .gameboard
+  background: white
   display: flex
   width: 480px
+  margin: 0 auto
   border: 1px solid black
   border-left: 0
   border-top: 0
+.controls
+  margin-top: 15px
+  button
+    margin: 3px
+    background: darken(blue, 10%)
+    color: white
+    padding: 3px
+    width: 80px
+    border-radius: 5px
+    border: solid black 1px
+    font-size: 1.1em
+  button:hover
+    cursor: pointer
+    background: darken(blue, 30%)
+  p
+    margin: 5px
+    font-size: 1.1em
 .square
   width: 15px
   height: 15px

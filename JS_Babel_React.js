@@ -1,8 +1,11 @@
 var Gameboard = React.createClass({
+  click: function(col, row){
+    this.props.squareClick(col, row);
+  },
   render: function(){
     var cols = [];
     for(var i=0; i<30; i++){
-        cols.push(<Col colNum={i} curBoard={this.props.board} />);
+        cols.push(<Col colNum={i} curBoard={this.props.board} squareClick={this.click} />);
     }
     return (
       <div className="gameboard">
@@ -13,13 +16,16 @@ var Gameboard = React.createClass({
 });
 
 var Col = React.createClass({
+  click: function(row) {
+    this.props.squareClick(this.props.colNum, row);
+  },
   render: function(){
     var rows = [];
     for(var i=0; i<30; i++){
       if(this.props.curBoard[this.props.colNum][i]===0){
-        rows.push(<div className="square" />);
+        rows.push(<div onClick={this.click.bind(null, i)} className="square" />);
       }else{
-        rows.push(<div className="square alive" />);
+        rows.push(<div onClick={this.click.bind(null, i)} className="square alive" />);
       }
     }
     return (
@@ -121,15 +127,24 @@ var Container = React.createClass({
       }
       newBoard.push(col);
     }
-    this.setState({board: newBoard});
+    this.setState({board: newBoard, generations: 0});
   },
   clearClick: function(){
     this.setState({board: this.getEmptyBoard()});
   },
+  markSquare: function(col, row){
+    var updatedBoard = this.state.board;
+    if(updatedBoard[col][row] === 0){
+      updatedBoard[col][row] = 1;
+    }else{
+      updatedBoard[col][row] = 0;
+    }
+    this.setState({board: updatedBoard});
+  },
   render: function(){
     return (
       <div className="conatiner">
-        <Gameboard board={this.state.board} />
+        <Gameboard board={this.state.board} squareClick={this.markSquare} />
         <Controls playClicked={this.playClick} resetClicked={this.resetClick} clearClicked={this.clearClick} playBtnText={this.state.playText} genNum={this.state.generations} />
       </div>
     );

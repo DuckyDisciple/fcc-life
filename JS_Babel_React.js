@@ -143,7 +143,7 @@ var Container = React.createClass({
   },
   render: function(){
     return (
-      <div className="conatiner">
+      <div className="container">
         <Gameboard board={this.state.board} squareClick={this.markSquare} />
         <Controls playClicked={this.playClick} resetClicked={this.resetClick} clearClicked={this.clearClick} playBtnText={this.state.playText} genNum={this.state.generations} />
       </div>
